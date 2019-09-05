@@ -79,7 +79,7 @@ void Stm32f3Encoder::interrupt_routine(TIM_HandleTypeDef *htim_generating_interr
         }
     }
 
-    if(previous_instance_p == NULL) return;
+    if(previous_instance_p == nullptr) return;
 
     previous_instance_p->interrupt_routine(htim_generating_interrupt);
 
