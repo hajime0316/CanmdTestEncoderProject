@@ -11,9 +11,9 @@
 #include "main.h"
 
 #ifndef MAX_ENCODER_COUNT
-    #error MAX_ENCODER_COUNT‚ª’è‹`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñD\
-           CubeMX‚Ì[User Constants]‚Å‚±‚Ìƒ}ƒNƒ’è\
-           ”‚ð’è‹`‚µ‚Ä‚­‚¾‚³‚¢D
+    #error MAX_ENCODER_COUNTãŒå®šç¾©ã•ã‚Œã¦ã„ã¾ã›ã‚“ï¼Ž\
+           CubeMXã®[User Constants]ã§ã“ã®ãƒžã‚¯ãƒ­å®š\
+           æ•°ã‚’å®šç¾©ã—ã¦ãã ã•ã„ï¼Ž
 #endif
 
 Stm32f3Encoder *Stm32f3Encoder::last_instance_p = nullptr;
@@ -25,8 +25,8 @@ Stm32f3Encoder::Stm32f3Encoder(TIM_HandleTypeDef *htim) {
     previous_instance_p = last_instance_p; 
     last_instance_p = this;
 
-    // ƒn[ƒhƒEƒFƒAƒXƒ^[ƒg
-    HAL_TIM_Base_Start_IT(htim);    // ‚±‚ê‚ª‚È‚¢‚ÆŠ„‚èž‚Ý‚ª—LŒø‚É‚È‚ç‚È‚¢
+    // ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¹ã‚¿ãƒ¼ãƒˆ
+    HAL_TIM_Base_Start_IT(htim);    // ã“ã‚ŒãŒãªã„ã¨å‰²ã‚Šè¾¼ã¿ãŒæœ‰åŠ¹ã«ãªã‚‰ãªã„
     HAL_TIM_Encoder_Start(htim, TIM_CHANNEL_ALL);
 }
 
@@ -70,11 +70,11 @@ void Stm32f3Encoder::interrupt_handler(TIM_HandleTypeDef *htim_generating_interr
 void Stm32f3Encoder::interrupt_routine(TIM_HandleTypeDef *htim_generating_interrupt) {
     if(this->htim->Instance == htim_generating_interrupt->Instance) {
         if(htim_generating_interrupt->Instance->CNT < (MAX_ENCODER_COUNT / 2)){
-            // MAX_PULSE_COUNT ‚©‚ç 0 ‚Ì•ûŒü‚ÉƒI[ƒo[ƒtƒ[
+            // MAX_PULSE_COUNT ã‹ã‚‰ 0 ã®æ–¹å‘ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼
             overflow_cnt++;
         }
         else {
-            // 0 ‚©‚ç MAX_PULSE_COUNT ‚Ì•ûŒü‚ÉƒI[ƒo[ƒtƒ[
+            // 0 ã‹ã‚‰ MAX_PULSE_COUNT ã®æ–¹å‘ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼
             overflow_cnt--;
         }
     }

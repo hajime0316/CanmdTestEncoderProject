@@ -8,7 +8,7 @@
 #include "usart.h"
 #include "gpio.h"
 
-// ƒGƒ“ƒR[ƒ_ƒ‚ƒWƒ…[ƒ‹
+// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 Stm32f3Encoder *encoder_0;
 Stm32f3Encoder *encoder_1;
 int encoder_pulse_count[2];
@@ -16,22 +16,22 @@ int encoder_overflow_count[2];
 int htim6_counter = 0;
 int htim7_counter = 0;
 
-// ‘¬“xƒ‚ƒWƒ…[ƒ‹
+// é€Ÿåº¦ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 Stm32f3Velocity *velocity_0;
 Stm32f3Velocity *velocity_1;
 int velocity_value[2] = {0};
 
 void setup(void) {
-    // ƒ\ƒtƒgƒEƒFƒAƒ‚ƒWƒ…[ƒ‹‰Šú‰»
+    // ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆæœŸåŒ–
     
-    // ƒn[ƒhƒEƒFƒAƒ‚ƒWƒ…[ƒ‹ƒXƒ^[ƒg
-    //// ƒGƒ“ƒR[ƒ_ƒ‚ƒWƒ…[ƒ‹‰Šú‰»
+    // ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ¼ãƒˆ
+    //// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆæœŸåŒ–
     encoder_0 = new Stm32f3Encoder(&htim2);
     encoder_1 = new Stm32f3Encoder(&htim3);
-    //// ‘¬“xƒ‚ƒWƒ…[ƒ‹‰Šú‰»
+    //// é€Ÿåº¦ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆæœŸåŒ–
     velocity_0 = new Stm32f3Velocity(&htim2);
     velocity_1 = new Stm32f3Velocity(&htim3);
-    //// ƒ^ƒCƒ~ƒ“ƒOƒŠƒ\[ƒX
+    //// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãƒªã‚½ãƒ¼ã‚¹
     HAL_TIM_Base_Start_IT(&htim6);
     HAL_TIM_Base_Start_IT(&htim7);
 }
@@ -62,20 +62,20 @@ void loop(void) {
 }
 
 //**************************
-//    ƒ^ƒCƒ}Š„‚èž‚ÝŠÖ”
+//    ã‚¿ã‚¤ãƒžå‰²ã‚Šè¾¼ã¿é–¢æ•°
 //**************************
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     Stm32f3Encoder::interrupt_handler(htim);
 
-    // 5msecƒ^ƒCƒ}
+    // 5msecã‚¿ã‚¤ãƒž
     if(htim->Instance == htim6.Instance) {
         htim6_counter++;
         velocity_value[0] = velocity_0->periodic_calculate_velocity();
         velocity_value[1] = velocity_1->periodic_calculate_velocity();
     }
 
-	// 100msecƒ^ƒCƒ}
+	// 100msecã‚¿ã‚¤ãƒž
 	if(htim->Instance == htim7.Instance) {
         htim7_counter++;
     }

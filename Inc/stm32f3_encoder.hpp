@@ -24,18 +24,18 @@ public:
     int get_pulse_cnt(void);
     int get_overflow_cnt(void);
     
-    // ƒGƒ“ƒR[ƒ_ƒ‚ƒWƒ…[ƒ‹‚ÌŠ„‚è‚İƒnƒ“ƒhƒ‰
-    // TIMŠ„‚è‚İŠÖ”‚Ì’†‚ÅƒR[ƒ‹
+    // ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ©
+    // TIMå‰²ã‚Šè¾¼ã¿é–¢æ•°ã®ä¸­ã§ã‚³ãƒ¼ãƒ«
     static void interrupt_handler(TIM_HandleTypeDef *htim_generating_interrupt);
 
 private:
-    // ‘SƒCƒ“ƒXƒ^ƒ“ƒX‚ÉƒAƒNƒZƒX‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^D
-    // Š„‚è‚İƒ‹[ƒ`ƒ“‚Ì’†‚Åg‚¤D
-    Stm32f3Encoder        *previous_instance_p; // ©g‚Ì‘O‚É¶¬‚³‚ê‚½ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                                                // ‘O‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‚È‚¢ê‡‚Ínull
-    static Stm32f3Encoder *last_instance_p;     // ÅŒã‚É¶¬‚µ‚½ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    // å…¨ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿ï¼
+    // å‰²ã‚Šè¾¼ã¿ãƒ«ãƒ¼ãƒãƒ³ã®ä¸­ã§ä½¿ã†ï¼
+    Stm32f3Encoder        *previous_instance_p; // è‡ªèº«ã®å‰ã«ç”Ÿæˆã•ã‚ŒãŸã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                                                // å‰ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒãªã„å ´åˆã¯null
+    static Stm32f3Encoder *last_instance_p;     // æœ€å¾Œã«ç”Ÿæˆã—ãŸã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-    // interrupt_handlerŠÖ”‚©‚çŒÄ‚Ño‚³‚ê‚éŠÖ”
+    // interrupt_handleré–¢æ•°ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
     void interrupt_routine(TIM_HandleTypeDef *htim);
 };
 
