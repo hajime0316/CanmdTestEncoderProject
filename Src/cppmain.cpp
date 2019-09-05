@@ -38,7 +38,7 @@ void setup(void) {
 
 void loop(void) {
     //HAL_Delay(500);
-    HAL_GPIO_TogglePin(GPIOA, LED_B_Pin);
+    HAL_GPIO_TogglePin(LED_B_GPIO_Port, LED_B_Pin);
 
     if(encoder_0 != nullptr) {
         encoder_pulse_count[0] = encoder_0->get_pulse_cnt();
